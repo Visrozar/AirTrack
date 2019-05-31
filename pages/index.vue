@@ -1,21 +1,33 @@
 <template>
   <section class="container">
     <div>
-      <h1>Air Shipment Tracker</h1>
-      <h2>Track Air shipments using AWB number</h2>
-      <h1 v-if="error">here is the error {{ error }}</h1>
-      <TrackShipment @awb-number="trackShipment" />
+      <h1 class="display-3">Air Shipment Tracker</h1>
+      <h2 class="subheading">Track Air shipments using AWB number</h2>
+      <TrackShipment @awb-number="trackShipment" :error="error" />
+
+      <v-divider></v-divider>
+      <Shipment v-if="data" :key="data._id" :data="data" />
+      <v-divider></v-divider>
+      <Routes v-if="data" :key="data._id" :data="data" />
+      <v-divider></v-divider>
+      <Events v-if="data" :key="data._id" :data="data" />
     </div>
   </section>
 </template>
 
 <script>
 import TrackShipment from '~/components/TrackShipment.vue'
+import Shipment from '~/components/Shipment.vue'
+import Routes from '~/components/Routes.vue'
+import Events from '~/components/Events.vue'
 import axios from 'axios'
 
 export default {
   components: {
-    TrackShipment
+    TrackShipment,
+    Shipment,
+    Routes,
+    Events
   },
   data() {
     return {
@@ -39,7 +51,8 @@ export default {
           },
           config
         )
-        console.log(res.data)
+        this.data = res.data.data
+        console.log(res.data.data)
       } catch (error) {
         this.error = error.response.data.message
         console.log(error.response)

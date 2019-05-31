@@ -10,10 +10,24 @@ html {
     Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
+.font-style {
+  width: 85%;
+  /* height: 25px; */
+  font-size: 21px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.19;
+  letter-spacing: normal;
+  text-align: left;
+  color: #717171;
+}
+
+.font-10 {
+  font-size: 10px;
+}
+
+.padding-bottom-15 {
+  padding: 15px;
 }
 </style>
